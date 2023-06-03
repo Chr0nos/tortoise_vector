@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "tortoise-vector"
+version = "0.1.0"
+description = "pgvector implementation for Tortoise-ORM"
+authors = ["Sebastien Nicolet <snicolet95@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "tortoise_vector"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+tortoise-orm = {extras = ["asyncpg"], version = "^0.19.3"}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
