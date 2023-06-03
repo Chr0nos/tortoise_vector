@@ -1,4 +1,4 @@
-# Implementation of vector from Tortoise-ORM
+# Implementation of vector for Tortoise-ORM
 Usage:
 
 ```python
