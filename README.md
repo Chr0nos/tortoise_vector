@@ -1,4 +1,7 @@
 # Implementation of vector for Tortoise-ORM
+This package adds the support of `pgvector` vectors to Tortoise-ORM as a new type of fields.
+That way you can filter/order by cosine similarity distances for scementic search using embeddings.
+Here's an example for openai's embeddings but this will work with any kind of embeddings.
 Usage:
 
 ```python
