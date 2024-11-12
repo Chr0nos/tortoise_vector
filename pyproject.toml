@@ -9,7 +9,7 @@ packages = [{include = "tortoise_vector"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
-tortoise-orm = {extras = ["asyncpg"], version = "^0.20.0"}
+tortoise-orm = {extras = ["asyncpg"], version = "^0.21.7"}
 
 
 [build-system]
