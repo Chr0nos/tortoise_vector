@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tortoise-vector"
-version = "0.1.1"
+version = "0.1.2"
 description = "pgvector implementation for Tortoise-ORM"
 authors = ["Sebastien Nicolet <snicolet95@gmail.com>"]
 license = "MIT"
