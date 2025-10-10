@@ -1,11 +1,11 @@
 [project]
 name = "tortoise-vector"
-version = "0.1.4"
+dynamic = ["version"]
 description = "pgvector implementation for Tortoise-ORM"
 authors = [{name="Sebastien Nicolet", email="snicolet95@gmail.com"}]
 license = "MIT"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.10"
 dependencies = [
     "tortoise-orm[asyncpg] >=0.23"
 ]
@@ -22,7 +22,18 @@ documentation = "https://github.com/Chr0nos/tortoise_vector/blob/master/tortoise
 
 [tool.poetry]
 packages = [{include = "tortoise_vector"}]
+version = "0.0.0"
+
+[tool.poetry.requires-plugins]
+poetry-dynamic-versioning = { version = ">=1.0.0,<2.0.0", extras = ["plugin"] }
+
+[tool.poetry-dynamic-versioning]
+enable = true
+
+[tool.poetry-dynamic-versioning.from-file]
+source = "tortoise_vector/__init__.py"
+pattern = '__version__ = "(.+)"'
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core", "poetry-dynamic-versioning >=1.0.0,<2.0.0"]
+build-backend = "poetry_dynamic_versioning.backend"

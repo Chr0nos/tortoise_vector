@@ -1,4 +1,6 @@
-from typing import Any, Type
+from __future__ import annotations
+
+from typing import Any
 
 from tortoise.fields.base import Field
 from tortoise.models import Model
@@ -10,13 +12,7 @@ class VectorField(Field, list):  # type:ignore
     instead of a float4[]
     """
 
-    def __init__(
-        self,
-        vector_size: int,
-        schema: str | None = None,
-        *args,
-        **kwargs,
-    ) -> None:
+    def __init__(self, vector_size: int, schema: str | None = None, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         self._vector_size = vector_size
         self._schema = schema or "public."
@@ -25,13 +21,13 @@ class VectorField(Field, list):  # type:ignore
     def SQL_TYPE(self) -> str:  # type: ignore
         return f"{self._schema}vector({self._vector_size})"
 
-    def to_db_value(self, value: list[float], instance: Type[Model] | Model) -> str:
+    def to_db_value(self, value: list[float], instance: type[Model] | Model) -> str:
         if isinstance(value, list):
-            return "[" + ",".join([str(item) for item in value]) + "]"
+            return "[" + ",".join(map(str, value)) + "]"
         return value
 
     def to_python_value(self, value: Any) -> list[float]:
         if isinstance(value, str):
             value = value.removeprefix("[").removesuffix("]")
-            return list([float(item) for item in value.split(",")])
+            return list(map(float, value.split(",")))
         return value

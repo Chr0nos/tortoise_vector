@@ -5,9 +5,9 @@ Here's an example for openai's embeddings but this will work with any kind of em
 Usage:
 
 ```python
+from tortoise.models import Model, QuerySet
 from tortoise_vector.field import VectorField
-from tortoise_vector.expressions import CosineSimilarity
-from tortoise import Model
+from tortoise_vector.expression import CosineSimilarity
 
 
 OPENAI_VECTOR_SIZE = 1536
@@ -19,11 +19,11 @@ class MyModel(Model):
 
 
 
-async def get_embedding_from_text(str: str) -> list[float]:
+async def get_embedding_from_text(string: str) -> list[float]:
     ...
 
 
-async def get_nearst_models(text: str) -> Queryset[MyModel]:
+async def get_nearst_models(text: str) -> QuerySet[MyModel]:
     embedding = await get_embedding_from_text(text)
     return (
         MyModel
